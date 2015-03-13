@@ -1,9 +1,14 @@
 # Ignore saved images
 *.tar
 
-# Ignore depricated files
-/depricated/
-
 # Ignore files with secrets (use *.example files)
-/iredmail_files/config
+files/config
+files/hostname
+files/uname
+files/mail_users.csv
 Dockerfile
+docker-compose.yml
+
+# Ignore dev files
+iRedMail-0.9.0/*
+/depricated/
