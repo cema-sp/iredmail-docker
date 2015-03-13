@@ -1,2 +1,2 @@
 # Ignore .example files
-*.example
+files/*.example
