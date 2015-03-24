@@ -7,8 +7,6 @@ This project uses [iRedMail-0.9.0][1] (as on 02/2015) with:
 * iRedAPD-1.4.4
 * roundcubemail-1.0.4
 
-*You could download archieve from official resource and replace one in files directory.*
-
 ## Building image ##
 ### 1. Editing iRedMail config file ###
 
@@ -115,14 +113,19 @@ After starting up container:
 
 1. Set up DNS records (A, MX, SPF and DKIM) (see [docs][3]).  
   To get DKIM use:  
+
     ```bash
     sudo docker exec docker_mailserver_1 amavisd-new showkeys
     ```
+
   To check it use:  
+
     ```bash
     sudo docker exec docker_mailserver_1 amavisd-new testkeys
     ```
+
 2. (Optional) if you use [jwilder/nginx-proxy][4], copy container certs with commands:  
+
     ```bash
     sudo docker cp docker_mailserver_1:/etc/ssl/certs/iRedMail.crt \
       /opt/docker/mail-server/certs/
@@ -131,7 +134,7 @@ After starting up container:
     sudo mv /opt/docker/mail-server/certs/{iRedMail,mx.example.com}.crt
     sudo mv /opt/docker/mail-server/certs/{iRedMail,mx.example.com}.key
     ```
-3. ...
+
 
 ## Testing container ##
 ### From inside container ###
