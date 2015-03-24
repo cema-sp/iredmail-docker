@@ -7,12 +7,23 @@ This project uses [iRedMail-0.9.0][1] (as on 02/2015) with:
 * iRedAPD-1.4.4
 * roundcubemail-1.0.4
 
+## What is inside ##
+
+Image builds with:  
+
+* Debian Wheezy
+* OpenLDAP
+* Apache
+* Roundcube
+* SOGo
+* MySQL
+
 ## Building image ##
 ### 1. Editing iRedMail config file ###
 
 You have to edit *files/config.example* file:  
 
-1. Rename *config.example* to *config*
+1. Rename *files/config.example* to *files/config*
 2. Replace "example.com" with your domain (lines marked with "!")
 3. Replace "password_pm", "password_ldap", "password_db" with postmaster password, 
 ldap manager password, DBA password (lines marked with "!!")__*__
@@ -24,7 +35,7 @@ __*__ - _It is strongly recommended to use random passwords_
 
 ### 2. Editing hostname & uname fakes ###
 
-You have to edit *hostname.example* and *uname.example* files 
+You have to edit *files/hostname.example* and *files/uname.example* files 
 by changing hostnames in them and renaming files (removing *.example* 
 from their names).  
 
@@ -66,12 +77,13 @@ You can add initial mail users to OpenLDAP:
 >        * Multiple groups must be seperated by colon.  
 > - Leading and trailing Space will be ignored.  
 
-### 5. (Optional) Configure mail lists, modify users ###
+### 5. (Optional) Configure mail lists, modify users, tool ###
 
 You can add mail lists by placing your _*.ldif_ files 
 into *files/ldifs* directory and naming them like *10_any_name.ldif*.  
 Moreover, you can place there any _*.ldif_ you like naming it *30_name.ldif*.  
 To prepare your ldif files read corresponding [iRedMail docs][2].  
+You can copy any necessary tools to *files/tools* directory to be added to image.  
 
 ### 6. (Optional) Replacing sources.list ###
 
