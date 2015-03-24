@@ -1,0 +1,4 @@
+
+export status_check_new_iredmail="DONE"
+export status_fetch_misc="DONE"
+export status_check_md5="DONE"

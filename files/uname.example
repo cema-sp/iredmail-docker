@@ -1,0 +1,2 @@
+#!/bin/bash
+/bin/uname_ $* | sed 's/'"$(/bin/hostname_)"'/mx.example.com/g'

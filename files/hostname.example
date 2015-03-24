@@ -1,0 +1,13 @@
+#!/bin/bash
+case "$*" in
+'-a'|'-A'|'-s')
+  echo "mx";;
+'-d')
+  echo "example.com";;
+'-f'|'--fqdn'|'--long'|'-v')
+  echo "mx.example.com";;
+'-i')
+  echo "127.0.0.1";;
+*)
+  /bin/hostname_ $* | sed 's/'"$(/bin/hostname_)"'/mx.example.com/g';;
+esac
