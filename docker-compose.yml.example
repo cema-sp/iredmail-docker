@@ -1,0 +1,21 @@
+mailserver:
+  image: cema/iredmail
+  hostname: mail
+  domainname: example.com
+# Open Ports: 
+# Apache: 80/tcp, 443/tcp Postfix: 25/tcp, 587/tcp 
+# Dovecot: 110/tcp, 143/tcp, 993/tcp, 995/tcp OpenLDAP: 389/tcp, 636/tcp
+  ports:
+   - "80:80" # HTTP
+   - "443:443" # HTTPS
+   - "25:25" # SMTP
+   - "587:587" # SMTP Submission
+   - "110:110" # POP3
+   - "143:143" # IMAP
+   - "993:993" # IMAPS
+   - "995:995" # POP3S
+   - "389:389" # LDAP
+   - "636:636" # LDAPS
+  volumes:
+   - /opt/containers/iredmail/backups/:/backups # Backups
+  restart: always
