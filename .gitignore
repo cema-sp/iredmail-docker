@@ -9,6 +9,15 @@ files/mail_users.csv
 Dockerfile
 docker-compose.yml
 
+# Ignore certs
+certs/*
+
+# Ignore custom ldifs
+files/ldifs/*
+
+# Ignore custom tools
+files/tools/*
+
 # Ignore dev files
 iRedMail-0.9.0/*
-/depricated/
+changes/*
