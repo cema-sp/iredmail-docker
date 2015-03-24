@@ -119,8 +119,8 @@ RUN cp /opt/iredmail/conf/ldap_init.ldif ldifs/00_ldap_init.ldif \
   && service slapd start \
   && for f in ldifs/*.ldif; \
   do \
-    ( ldapadd -D 'cn=Manager,'"$DOCKER_LDAP_DN" -w ldap_password -f "$f" || \
-    ldapmodify -v -D 'cn=Manager,'"$DOCKER_LDAP_DN" -w ldap_password -f "$f" ); \
+    ( ldapadd -D 'cn=Manager,'"$DOCKER_LDAP_DN" -w password_ldap -f "$f" || \
+    ldapmodify -v -D 'cn=Manager,'"$DOCKER_LDAP_DN" -w password_ldap -f "$f" ); \
   done
 
 # Encrypy iRedMail.tips
