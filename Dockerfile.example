@@ -102,6 +102,9 @@ RUN sed -i 's/ 101/ 0/' /usr/sbin/policy-rc.d \
   && rm -rf /var/lib/apt/lists/* \
   && sed -i 's/ 0/ 101/' /usr/sbin/policy-rc.d
 
+# Create directory for LDIF files
+RUN mkdir ldifs
+
 # Process initial CSV
 RUN if [ -e mail_users.csv ]; \
     then \
