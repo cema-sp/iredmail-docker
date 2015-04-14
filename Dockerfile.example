@@ -109,6 +109,11 @@ RUN if [ -e mail_users.csv ]; \
       && mv ./mail_users.csv.ldif ldifs/20_mail_users.ldif; \
     fi
 
+# Reduce number of allowed users to 1024
+# otherwise slapd consumes two orders of magnitude more of RAM
+# see https://github.com/docker/docker/issues/8231
+ulimit -n 1024
+
 # Run slapd as root
 RUN rm -rf /etc/ldap/slapd.d \
   && sed -i 's/openldap/root/g' /etc/default/slapd
