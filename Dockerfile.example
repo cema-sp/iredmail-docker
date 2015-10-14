@@ -116,6 +116,9 @@ RUN if [ -e mail_users.csv ]; \
 RUN rm -rf /etc/ldap/slapd.d \
   && sed -i 's/openldap/root/g' /etc/default/slapd
 
+# Limit slapd memory (see https://github.com/cema-sp/iredmail-docker/issues/3)
+RUN sed -ri 's/^PATH/ulimit -n 1024\nPATH/' /etc/init.d/slapd
+
 # TODO: Replace ldap password (LDAP_ROOTPW)
 # Copy initial ldif and add all ldifs to ldap
 RUN cp /opt/iredmail/conf/ldap_init.ldif ldifs/00_ldap_init.ldif \
