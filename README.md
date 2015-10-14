@@ -1,4 +1,12 @@
 # iRedMail Docker Container #
+## Disclaimer
+Unfortunately this docker image is far from being truly persistent and docker-way. 
+It is more like Ubuntu VM but inside a container.  
+
+To improve it one should use separate DB container w/ or w/o mounted volume/data-container 
+for persistence, create setup and startup scripts and start all services inside container 
+with startup script, not Ubuntu init.
+
 ## Information ##
 
 This project uses [iRedMail-0.9.0][1] (as on 02/2015) with:
