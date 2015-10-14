@@ -64,6 +64,9 @@ ldap manager password, DBA password (lines marked with "!!")__*__
         pass=pm_password && sed -ri 's/^!!(export .*)(password_pm)/\1'"$pass"'/' files/config.example
         ```
 
+3. Replace "password_random" with line from `date | sha256sum | base64 | head -c 30 ; echo` or 
+`cat /dev/urandom | head -n 1 | tr -dc 'a-z0-9' | sha256sum | base64 | head -c 30` (lines marked with "!!!")
+
     * replace __password_random__ with random passwords:  
 
         ```bash
@@ -72,8 +75,6 @@ ldap manager password, DBA password (lines marked with "!!")__*__
         done
         ```
 
-3. Replace "password_random" with line from `date | sha256sum | base64 | head -c 30 ; echo` 
-(lines marked with "!!!")
 4. Remove all "!" signs from file and make sure everything configured
 5. Rename *files/config.example* to *files/config*
 
@@ -83,7 +84,11 @@ __*__ - _It is strongly recommended to use random passwords_
 
 You have to edit *files/hostname.example* and *files/uname.example* files 
 by changing hostnames in them and renaming files (removing *.example* 
-from their names).  
+from their names):  
+
+```bash
+fqdn=test.com && sed -ri 's/example.com/'"$fqdn"'/' files/uname.example files/hostname.example files/mail_users.csv.example
+```  
 
 ### 3. Editing Dockerfile ###
 
