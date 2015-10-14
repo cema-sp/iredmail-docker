@@ -21,7 +21,7 @@ export DEFAULT_PASSWORD_SCHEME='SSHA'
 !export LDAP_BINDDN="cn=vmail,dc=example,dc=com"
 !export LDAP_ADMIN_DN="cn=vmailadmin,dc=example,dc=com"
 !export LDAP_ROOTDN="cn=Manager,dc=example,dc=com"
-!export LDAP_BASEDN_NAME="domains"
+export LDAP_BASEDN_NAME="domains"
 !export LDAP_BASEDN="o=domains,dc=example,dc=com"
 !export LDAP_ADMIN_BASEDN="o=domainAdmins,dc=example,dc=com"
 !!export LDAP_ROOTPW='password_ldap'
