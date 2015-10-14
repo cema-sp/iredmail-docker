@@ -23,13 +23,59 @@ Image builds with:
 
 You have to edit *files/config.example* file:  
 
-1. Rename *files/config.example* to *files/config*
-2. Replace "example.com" with your domain (lines marked with "!")
-3. Replace "password_pm", "password_ldap", "password_db" with postmaster password, 
+1. Replace "example.com" with your domain (lines marked with "!")
+
+    * repalce __dc=example,dc=com__ with __dc=test,dc=com__:  
+
+        ```bash
+        dn=dc=test,dc=com && sed -ri 's/^!(export .*)(dc=example,dc=com)/\1'"$dn"'/' files/config.example
+        ```
+
+    * repalce _example.com__ with __test.com__:  
+
+        ```bash
+        fqdn=test.com && sed -ri 's/^!(export .*)(example.com)/\1'"$fqdn"'/' files/config.example
+        ```
+
+    * repalce _example__ with __test__:  
+
+        ```bash
+        domain=test && sed -ri 's/^!(export .*)(example)/\1'"$domain"'/' files/config.example
+        ```
+
+2. Replace "password_pm", "password_ldap", "password_db" with postmaster password, 
 ldap manager password, DBA password (lines marked with "!!")__*__
-4. Replace "password_random" with line from `date | sha256sum | base64 | head -c 30 ; echo` 
+
+    * replace __password_ldap__ with __ldap_password__:  
+
+        ```bash
+        pass=ldap_password && sed -ri 's/^!!(export .*)(password_ldap)/\1'"$pass"'/' files/config.example
+        ```
+
+    * replace __password_db__ with __db_password__:  
+
+        ```bash
+        pass=db_password && sed -ri 's/^!!(export .*)(password_db)/\1'"$pass"'/' files/config.example
+        ```
+
+    * replace __password_pm__ with __pm_password__:  
+
+        ```bash
+        pass=pm_password && sed -ri 's/^!!(export .*)(password_pm)/\1'"$pass"'/' files/config.example
+        ```
+
+    * replace __password_random__ with random passwords:  
+
+        ```bash
+        for i in {1..10}; do 
+            sed -ri '0,/^!!!(export .*)(password_random)/s/^!!!(export .*)(password_random)/\1'"$(cat /dev/urandom | head -n 1 | tr -dc 'a-z0-9' | sha256sum | base64 | head -c 30)"'/' files/config.example
+        done
+        ```
+
+3. Replace "password_random" with line from `date | sha256sum | base64 | head -c 30 ; echo` 
 (lines marked with "!!!")
-5. Remove all "!" signs from file
+4. Remove all "!" signs from file and make sure everything configured
+5. Rename *files/config.example* to *files/config*
 
 __*__ - _It is strongly recommended to use random passwords_
 
