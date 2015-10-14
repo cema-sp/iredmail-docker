@@ -102,7 +102,10 @@ RUN sed -i 's/ 101/ 0/' /usr/sbin/policy-rc.d \
   && rm -rf /var/lib/apt/lists/* \
   && sed -i 's/ 0/ 101/' /usr/sbin/policy-rc.d
 
-# Process initial CSV
+# Create directory for LDIF files
+RUN mkdir -p ldifs
+
+# Create users from mail_users.csv
 RUN if [ -e mail_users.csv ]; \
     then \
       python /opt/itools/create_mail_user_OpenLDAP.py ./mail_users.csv \
